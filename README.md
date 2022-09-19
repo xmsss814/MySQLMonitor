@@ -23,3 +23,7 @@ python main.py --host 主机ip --username 数据库用户名，默认root --pass
 
 ## 其他：
 程序会将监听到的sql语句存储到 ./MonitorLog/****.csv 文件
+
+## 未来开发功能
+GUI面板
+筛选功能——筛选用户，筛选sql语句类型
