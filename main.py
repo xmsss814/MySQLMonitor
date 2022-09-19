@@ -1,6 +1,5 @@
 import keyboard,pymysql,time,threading,click,sys
 from colorama import init, Fore, Back, Style
-import pandas
 
 REFRESH_TIME=1  #刷新时间 float 单位 s
 EX=True  #是否持续查询
@@ -77,10 +76,20 @@ def main(host,username,password,refresh):
     cursor.close()
     print("————————————————————————————已将sql语句全部打印————————————————————————————")
     temporary = time.strftime("%Y-%m-%d_%H~%M~%S",time.localtime())
-    data = pandas.DataFrame(GENERAL_LOG)
     global FILEPATH
     FILEPATH=FILEPATH+temporary+".csv"
-    data.to_csv(FILEPATH)
+    with open(FILEPATH,"w") as file:
+        it = iter(GENERAL_LOG)
+        while True:
+            try:
+                for var in next(it):
+                    file.write(str(var))
+                    file.write(",")
+                file.write("\n")
+            except StopIteration:
+                break
+        file.close()
+
 
 if __name__ == '__main__':
     print("                                                                                                    ")

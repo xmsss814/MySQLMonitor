@@ -5,7 +5,6 @@
 python==3.8
 
 ## 库文件：
-pandas
 colorama
 keyboard
 pymysql
